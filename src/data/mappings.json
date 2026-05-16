@@ -1,2 +1,46 @@
 {
+  "jujutsu_kaisen": {
+    "title": "Jujutsu Kaisen",
+    "aliases": ["jujutsu kaisen", "jjk"],
+    "seasons": {
+      "1": {
+        "episodes": {
+          "1": {
+            "chapters": [1, 1],
+            "continue_from": 2,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": ["Faithful adaptation of chapter 1"]
+          },
+          "2": {
+            "chapters": [2, 3],
+            "continue_from": 4,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": ["Covers the beginning of the Cursed Womb arc"]
+          }
+        }
+      }
+    }
+  },
+  "chainsaw_man": {
+    "title": "Chainsaw Man",
+    "aliases": ["chainsaw man", "csm"],
+    "seasons": {
+      "1": {
+        "episodes": {
+          "1": {
+            "chapters": [1, 1],
+            "continue_from": 2,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": ["Adapts chapter 1: Dog & Chainsaw"]
+          }
+        }
+      }
+    }
+  }
 }

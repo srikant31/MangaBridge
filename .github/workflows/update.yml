@@ -1,0 +1,29 @@
+name: Update Mappings Weekly
+
+on:
+  schedule:
+    - cron: '0 6 * * 2'   # Every Tuesday 6am UTC
+  workflow_dispatch:      # Manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests beautifulsoup4 openai
+
+      - name: Run pipeline
+        env:
+          GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
+        run: python pipeline/scraper.py
+
+      - name: Commit updated mappings
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto-update mappings [skip ci]"
+          file_pattern: "src/data/mappings.json"
