@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "MangaBridge",
+  "version": "1.0.0",
+  "description": "MangaBridge Extension",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "128": "public/icon128.png"
+  },
+  "background": {
+    "service_worker": "src/background/worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/detector.js"]
+    }
+  ]
+}
