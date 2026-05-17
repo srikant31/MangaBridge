@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const SOURCE_LABELS = {
   mangaepisodeguide: { label: "Verified",      color: "text-emerald-400" },
@@ -43,41 +43,59 @@ async function fetchAniListData(title) {
 
   return {
     animeTitle: media.title.english || media.title.romaji,
+    // BUG FIX: totalEpisodes is season-specific from AniList, totalChapters is
+    // the full manga. We store both and warn the user estimates may be off for
+    // long-running manga with many seasons.
     totalEpisodes: media.episodes,
     mangaTitle: mangaEdge?.node?.title?.english || mangaEdge?.node?.title?.romaji,
     totalChapters: mangaEdge?.node?.chapters,
   };
 }
 
-function estimateChapters(episodeNum, totalEpisodes, totalChapters, fillerType) {
+// BUG FIX: removed fillerType param — we never have filler data for dynamic
+// results, so the function only does math and lets the UI show the disclaimer.
+function estimateChapters(episodeNum, totalEpisodes, totalChapters) {
   if (!totalChapters || !totalEpisodes) return null;
-  // For filler episodes, return null so UI shows "Filler - No manga source"
-  if (fillerType === 'filler') return null;
+  // Guard: episodeNum must be within the season's episode count
+  const ep = Math.min(episodeNum, totalEpisodes);
   const chaptersPerEp = totalChapters / totalEpisodes;
-  const start = Math.round((episodeNum - 1) * chaptersPerEp) + 1;
-  const end = Math.round(episodeNum * chaptersPerEp);
+  const start = Math.round((ep - 1) * chaptersPerEp) + 1;
+  const end   = Math.round(ep * chaptersPerEp);
+  // Clamp end to totalChapters so we never overshoot
+  const clampedEnd = Math.min(end, totalChapters);
+  const clampedStart = Math.min(start, clampedEnd);
   return {
-    chapters: [start, end],
-    continue_from: end + 1,
-    filler_type: 'canon',
+    chapters: [clampedStart, clampedEnd],
+    continue_from: clampedEnd + 1,
+    // BUG FIX: was hardcoded 'canon' — now null so UI shows "Unknown"
+    filler_type: null,
     source: 'ai_inferred',
     confidence: 'low',
-    notes: ['Chapter range estimated — verify on wiki']
+    notes: [
+      'Chapter range estimated via AniList data — may be off for multi-season anime',
+      'Filler status unavailable for estimated results'
+    ]
   };
 }
+
 async function dynamicLookup(animeTitle, episodeNum) {
   try {
     console.log('[MangaBridge] dynamicLookup called:', animeTitle, episodeNum);
     const anilist = await fetchAniListData(animeTitle);
     console.log('[MangaBridge] AniList result:', anilist);
     if (!anilist) return null;
+
+    // BUG FIX: don't pass fillerType — we never know it for dynamic results
     const estimated = estimateChapters(episodeNum, anilist.totalEpisodes, anilist.totalChapters);
     console.log('[MangaBridge] Estimated chapters:', estimated);
+
     return {
-      animeTitle: anilist.animeTitle,
-      mangaTitle: anilist.mangaTitle,
-      episodeData: estimated,
-      fromDynamic: true,
+      animeTitle:    anilist.animeTitle,
+      mangaTitle:    anilist.mangaTitle,
+      totalEpisodes: anilist.totalEpisodes,
+      totalChapters: anilist.totalChapters,
+      episodeData:   estimated,
+      fromDynamic:   true,
     };
   } catch (e) {
     console.warn('[MangaBridge] Dynamic lookup failed:', e);
@@ -162,7 +180,6 @@ function App() {
                       setCurrentAnime(foundKey);
                       setEpisodeNum(det.episodeNumber || 1);
                     } else {
-                      // null = not in local DB, triggers dynamic lookup
                       setCurrentAnime(null);
                       setEpisodeNum(det.episodeNumber || 1);
                     }
@@ -212,15 +229,16 @@ function App() {
   }, [episodeData]);
 
   // ── Dynamic lookup ────────────────────────────────────────────────────────
+  // Use a ref to track the current lookup so stale results don't overwrite
+  // a newer in-flight request when the user changes episode quickly.
+  const lookupIdRef = useRef(0);
+
   useEffect(() => {
-    // Wait until mappings and currentAnime are resolved (not undefined)
     if (!mappings || currentAnime === undefined) return;
 
-    // currentAnime is null = not in local DB
-    // currentAnime is a string but episodeData missing = episode gap in local DB
     const needsDynamic = currentAnime === null || (!episodeData && detected);
 
-    console.log('[MangaBridge] Dynamic check:', { currentAnime, episodeData, needsDynamic, detected });
+    console.log('[MangaBridge] Dynamic check:', { currentAnime, episodeData, needsDynamic, detected, episodeNum });
 
     if (!needsDynamic) {
       setDynamicResult(null);
@@ -230,19 +248,31 @@ function App() {
     if (!detected) return;
 
     const title = (detected.animeTitle || '').trim();
-    const ep    = detected.episodeNumber || episodeNum;
     if (!title) return;
 
+    // BUG FIX: always use episodeNum (the input-controlled value), never
+    // detected.episodeNumber — so manual episode changes actually re-run.
+    const ep = episodeNum;
+
+    // Cancel any previous in-flight lookup
+    const myId = ++lookupIdRef.current;
+
     setDynamicLoading(true);
+    // BUG FIX: clear stale result immediately so old chapters don't linger
     setDynamicResult(null);
 
     dynamicLookup(title, ep)
       .then(result => {
+        // Ignore if a newer lookup has started
+        if (lookupIdRef.current !== myId) return;
         console.log('[MangaBridge] Dynamic result:', result);
         setDynamicResult(result);
       })
-      .finally(() => setDynamicLoading(false));
+      .finally(() => {
+        if (lookupIdRef.current === myId) setDynamicLoading(false);
+      });
 
+  // episodeNum in deps so changing the input reruns this correctly
   }, [currentAnime, episodeNum, mappings, detected, episodeData]);
 
   // ── Loading ───────────────────────────────────────────────────────────────
@@ -258,6 +288,27 @@ function App() {
   }
 
   const localKeys = Object.keys(mappings).filter(k => k !== 'version' && k !== 'updated_at');
+
+  // ── Filler badge helper ───────────────────────────────────────────────────
+  function FillerBadge({ fillerType }) {
+    if (!fillerType) {
+      return (
+        <span className="text-[10px] font-bold text-slate-500 italic px-2 py-0.5 rounded border border-slate-700">
+          Unknown
+        </span>
+      );
+    }
+    const styles = {
+      canon:  'text-indigo-400 bg-indigo-400/10 border-indigo-400/20',
+      filler: 'text-orange-400 bg-orange-400/10 border-orange-400/20',
+      mixed:  'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+    };
+    return (
+      <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${styles[fillerType] || 'text-slate-400 border-slate-700'}`}>
+        {fillerType}
+      </span>
+    );
+  }
 
   return (
     <div className="w-80 min-h-[400px] bg-slate-900 text-slate-100 p-4 font-sans select-none">
@@ -280,9 +331,18 @@ function App() {
 
       <main className="space-y-6">
 
-        {/* Series dropdown */}
+        {/* Series dropdown + detected name when not in local DB */}
         <div className="space-y-1.5">
           <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Series</label>
+
+          {/* FIX: show detected anime name when it's not in the local DB */}
+          {currentAnime === null && detected?.animeTitle && (
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-lg mb-1">
+              <span className="text-[10px] text-amber-400 font-semibold uppercase tracking-wide">Detected:</span>
+              <span className="text-xs text-amber-300 truncate">{detected.animeTitle}</span>
+            </div>
+          )}
+
           <select
             className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
             value={currentAnime || ''}
@@ -339,13 +399,7 @@ function App() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">Type</span>
-                <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${
-                  episodeData.filler_type === 'canon'
-                    ? 'text-indigo-400 bg-indigo-400/10 border-indigo-400/20'
-                    : 'text-orange-400 bg-orange-400/10 border-orange-400/20'
-                }`}>
-                  {episodeData.filler_type}
-                </span>
+                <FillerBadge fillerType={episodeData.filler_type} />
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">Source</span>
@@ -382,6 +436,17 @@ function App() {
                 ~ Estimated
               </span>
             </div>
+
+            {/* Warn if AniList episode count doesn't match expectation */}
+            {dynamicResult.totalEpisodes && episodeNum > dynamicResult.totalEpisodes && (
+              <div className="mb-3 px-2 py-1.5 bg-red-500/10 border border-red-500/20 rounded-lg">
+                <p className="text-[10px] text-red-400">
+                  ⚠ Episode {episodeNum} exceeds AniList's count of {dynamicResult.totalEpisodes} for this entry.
+                  Results may belong to a different season.
+                </p>
+              </div>
+            )}
+
             <div className="space-y-3 pt-3 border-t border-slate-700/50">
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">Read Next</span>
@@ -389,26 +454,29 @@ function App() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">Manga</span>
-                <span className="text-xs text-slate-300">{dynamicResult.mangaTitle || 'Unknown'}</span>
+                <span className="text-xs text-slate-300 truncate max-w-[140px]">{dynamicResult.mangaTitle || 'Unknown'}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-400">Detected</span>
-                <span className="text-xs text-slate-300">{dynamicResult.animeTitle}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-400">Filler Status</span>
-                <span className="text-[10px] font-bold text-slate-500 italic">Unknown for estimated</span>
+                <span className="text-xs text-slate-400">AniList entry</span>
+                <span className="text-xs text-slate-300 truncate max-w-[140px]">{dynamicResult.animeTitle}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">Type</span>
-                <span className="text-[10px] font-bold text-slate-500 italic">May include filler</span>
+                {/* FIX: filler_type is null for dynamic — FillerBadge shows Unknown */}
+                <FillerBadge fillerType={dynamicResult.episodeData.filler_type} />
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-slate-400">Confidence</span>
+                <span className="text-[10px] font-bold text-yellow-500 uppercase tracking-wider">Low</span>
               </div>
             </div>
             {dynamicResult.episodeData.notes?.length > 0 && (
-              <div className="mt-3 pt-3 border-t border-slate-700/50">
-                <p className="text-[10px] text-amber-500/70 italic leading-relaxed">
-                  ⚠ {dynamicResult.episodeData.notes[0]}
-                </p>
+              <div className="mt-3 pt-3 border-t border-slate-700/50 space-y-1">
+                {dynamicResult.episodeData.notes.map((note, i) => (
+                  <p key={i} className="text-[10px] text-amber-500/70 italic leading-relaxed">
+                    ⚠ {note}
+                  </p>
+                ))}
               </div>
             )}
           </div>
