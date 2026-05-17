@@ -25,3 +25,14 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "sync") syncMappings()
 })
 
+// Inject content script manually into any tab when popup opens
+chrome.runtime.onMessage.addListener((msg, sender, respond) => {
+  if (msg.type === 'INJECT') {
+    chrome.scripting.executeScript({
+      target: { tabId: msg.tabId },
+      files: ['content/detector.js']
+    }).then(() => respond({ ok: true }))
+      .catch(e => respond({ ok: false, error: e.message }));
+    return true;
+  }
+});

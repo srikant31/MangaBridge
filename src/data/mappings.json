@@ -1,25 +1,276 @@
 {
   "jujutsu_kaisen": {
     "title": "Jujutsu Kaisen",
-    "aliases": ["jujutsu kaisen", "jjk"],
+    "aliases": [
+      "jujutsu kaisen",
+      "jjk"
+    ],
     "seasons": {
       "1": {
         "episodes": {
           "1": {
-            "chapters": [1, 1],
-            "continue_from": 2,
+            "chapters": [
+              1,
+              2
+            ],
+            "continue_from": 3,
             "filler_type": "canon",
             "source": "mangaepisodeguide",
             "confidence": "high",
-            "notes": ["Faithful adaptation of chapter 1"]
+            "notes": []
           },
           "2": {
-            "chapters": [2, 3],
+            "chapters": [
+              3,
+              3
+            ],
             "continue_from": 4,
             "filler_type": "canon",
             "source": "mangaepisodeguide",
             "confidence": "high",
-            "notes": ["Covers the beginning of the Cursed Womb arc"]
+            "notes": []
+          },
+          "3": {
+            "chapters": [
+              4,
+              5
+            ],
+            "continue_from": 6,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "4": {
+            "chapters": [
+              6,
+              7
+            ],
+            "continue_from": 8,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "5": {
+            "chapters": [
+              8,
+              9
+            ],
+            "continue_from": 10,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "6": {
+            "chapters": [
+              10,
+              12
+            ],
+            "continue_from": 13,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "7": {
+            "chapters": [
+              13,
+              15
+            ],
+            "continue_from": 16,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "8": {
+            "chapters": [
+              16,
+              18
+            ],
+            "continue_from": 19,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "9": {
+            "chapters": [
+              19,
+              21
+            ],
+            "continue_from": 22,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "10": {
+            "chapters": [
+              22,
+              23
+            ],
+            "continue_from": 24,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "11": {
+            "chapters": [
+              24,
+              26
+            ],
+            "continue_from": 27,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "12": {
+            "chapters": [
+              27,
+              28
+            ],
+            "continue_from": 29,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "13": {
+            "chapters": [
+              29,
+              31
+            ],
+            "continue_from": 32,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "14": {
+            "chapters": [
+              32,
+              34
+            ],
+            "continue_from": 35,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "15": {
+            "chapters": [
+              35,
+              37
+            ],
+            "continue_from": 38,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "16": {
+            "chapters": [
+              38,
+              40
+            ],
+            "continue_from": 41,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "17": {
+            "chapters": [
+              41,
+              43
+            ],
+            "continue_from": 44,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "18": {
+            "chapters": [
+              44,
+              45
+            ],
+            "continue_from": 46,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "19": {
+            "chapters": [
+              46,
+              48
+            ],
+            "continue_from": 49,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "20": {
+            "chapters": [
+              49,
+              51
+            ],
+            "continue_from": 52,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "21": {
+            "chapters": [
+              52,
+              54
+            ],
+            "continue_from": 55,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "22": {
+            "chapters": [
+              55,
+              57
+            ],
+            "continue_from": 58,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "23": {
+            "chapters": [
+              58,
+              61
+            ],
+            "continue_from": 62,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "24": {
+            "chapters": [
+              62,
+              64
+            ],
+            "continue_from": 65,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
           }
         }
       }
@@ -27,17 +278,722 @@
   },
   "chainsaw_man": {
     "title": "Chainsaw Man",
-    "aliases": ["chainsaw man", "csm"],
+    "aliases": [
+      "chainsaw man",
+      "csm"
+    ],
     "seasons": {
       "1": {
         "episodes": {
           "1": {
-            "chapters": [1, 1],
+            "chapters": [
+              1,
+              2
+            ],
+            "continue_from": 3,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "2": {
+            "chapters": [
+              5,
+              8
+            ],
+            "continue_from": 9,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "3": {
+            "chapters": [
+              9,
+              12
+            ],
+            "continue_from": 13,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "4": {
+            "chapters": [
+              13,
+              16
+            ],
+            "continue_from": 17,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "5": {
+            "chapters": [
+              14,
+              16
+            ],
+            "continue_from": 17,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "6": {
+            "chapters": [
+              17,
+              19
+            ],
+            "continue_from": 20,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "7": {
+            "chapters": [
+              23,
+              25
+            ],
+            "continue_from": 26,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "8": {
+            "chapters": [
+              26,
+              27
+            ],
+            "continue_from": 28,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "9": {
+            "chapters": [
+              28,
+              30
+            ],
+            "continue_from": 31,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "10": {
+            "chapters": [
+              31,
+              33
+            ],
+            "continue_from": 34,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "11": {
+            "chapters": [
+              34,
+              35
+            ],
+            "continue_from": 36,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "12": {
+            "chapters": [
+              36,
+              38
+            ],
+            "continue_from": 39,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          }
+        }
+      }
+    }
+  },
+  "demon_slayer": {
+    "title": "Demon Slayer",
+    "aliases": [
+      "demon slayer",
+      "kimetsu no yaiba",
+      "kny"
+    ],
+    "seasons": {
+      "1": {
+        "episodes": {
+          "1": {
+            "chapters": [
+              1,
+              1
+            ],
             "continue_from": 2,
             "filler_type": "canon",
             "source": "mangaepisodeguide",
             "confidence": "high",
-            "notes": ["Adapts chapter 1: Dog & Chainsaw"]
+            "notes": []
+          },
+          "2": {
+            "chapters": [
+              2,
+              3
+            ],
+            "continue_from": 4,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "3": {
+            "chapters": [
+              4,
+              5
+            ],
+            "continue_from": 6,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "4": {
+            "chapters": [
+              6,
+              7
+            ],
+            "continue_from": 8,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "5": {
+            "chapters": [
+              8,
+              9
+            ],
+            "continue_from": 10,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "6": {
+            "chapters": [
+              10,
+              11
+            ],
+            "continue_from": 12,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "7": {
+            "chapters": [
+              12,
+              13
+            ],
+            "continue_from": 14,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "8": {
+            "chapters": [
+              14,
+              15
+            ],
+            "continue_from": 16,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "9": {
+            "chapters": [
+              16,
+              17
+            ],
+            "continue_from": 18,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "10": {
+            "chapters": [
+              18,
+              19
+            ],
+            "continue_from": 20,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "11": {
+            "chapters": [
+              20,
+              21
+            ],
+            "continue_from": 22,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "12": {
+            "chapters": [
+              22,
+              24
+            ],
+            "continue_from": 25,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "13": {
+            "chapters": [
+              25,
+              26
+            ],
+            "continue_from": 27,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "14": {
+            "chapters": [
+              26,
+              27
+            ],
+            "continue_from": 28,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "15": {
+            "chapters": [
+              28,
+              29
+            ],
+            "continue_from": 30,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "16": {
+            "chapters": [
+              30,
+              32
+            ],
+            "continue_from": 33,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "17": {
+            "chapters": [
+              32,
+              34
+            ],
+            "continue_from": 35,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "18": {
+            "chapters": [
+              35,
+              37
+            ],
+            "continue_from": 38,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "19": {
+            "chapters": [
+              38,
+              40
+            ],
+            "continue_from": 41,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "20": {
+            "chapters": [
+              41,
+              42
+            ],
+            "continue_from": 43,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "21": {
+            "chapters": [
+              43,
+              44
+            ],
+            "continue_from": 45,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "22": {
+            "chapters": [
+              45,
+              47
+            ],
+            "continue_from": 48,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "23": {
+            "chapters": [
+              47,
+              48
+            ],
+            "continue_from": 49,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "24": {
+            "chapters": [
+              48,
+              50
+            ],
+            "continue_from": 51,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "25": {
+            "chapters": [
+              null,
+              null
+            ],
+            "continue_from": null,
+            "filler_type": "canon",
+            "source": "ai_inferred",
+            "confidence": "low",
+            "notes": [
+              "Chapter range unverified \u2014 may be approximate"
+            ]
+          },
+          "26": {
+            "chapters": [
+              51,
+              54
+            ],
+            "continue_from": 55,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          }
+        }
+      }
+    }
+  },
+  "vinland_saga": {
+    "title": "Vinland Saga",
+    "aliases": [
+      "vinland saga"
+    ],
+    "seasons": {
+      "1": {
+        "episodes": {
+          "1": {
+            "chapters": [
+              1,
+              2
+            ],
+            "continue_from": 3,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "2": {
+            "chapters": [
+              3,
+              4
+            ],
+            "continue_from": 5,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "3": {
+            "chapters": [
+              5,
+              7
+            ],
+            "continue_from": 8,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "4": {
+            "chapters": [
+              8,
+              9
+            ],
+            "continue_from": 10,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "5": {
+            "chapters": [
+              10,
+              11
+            ],
+            "continue_from": 12,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "6": {
+            "chapters": [
+              12,
+              14
+            ],
+            "continue_from": 15,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "7": {
+            "chapters": [
+              15,
+              16
+            ],
+            "continue_from": 17,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "8": {
+            "chapters": [
+              17,
+              18
+            ],
+            "continue_from": 19,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "9": {
+            "chapters": [
+              19,
+              20
+            ],
+            "continue_from": 21,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "10": {
+            "chapters": [
+              21,
+              22
+            ],
+            "continue_from": 23,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "11": {
+            "chapters": [
+              23,
+              25
+            ],
+            "continue_from": 26,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "12": {
+            "chapters": [
+              26,
+              27
+            ],
+            "continue_from": 28,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "13": {
+            "chapters": [
+              28,
+              29
+            ],
+            "continue_from": 30,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "14": {
+            "chapters": [
+              30,
+              32
+            ],
+            "continue_from": 33,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "15": {
+            "chapters": [
+              33,
+              34
+            ],
+            "continue_from": 35,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "16": {
+            "chapters": [
+              35,
+              36
+            ],
+            "continue_from": 37,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "17": {
+            "chapters": [
+              37,
+              38
+            ],
+            "continue_from": 39,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "18": {
+            "chapters": [
+              39,
+              40
+            ],
+            "continue_from": 41,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "19": {
+            "chapters": [
+              41,
+              43
+            ],
+            "continue_from": 44,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "20": {
+            "chapters": [
+              44,
+              45
+            ],
+            "continue_from": 46,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "21": {
+            "chapters": [
+              46,
+              47
+            ],
+            "continue_from": 48,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "22": {
+            "chapters": [
+              48,
+              50
+            ],
+            "continue_from": 51,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "23": {
+            "chapters": [
+              51,
+              52
+            ],
+            "continue_from": 53,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
+          },
+          "24": {
+            "chapters": [
+              53,
+              54
+            ],
+            "continue_from": 55,
+            "filler_type": "canon",
+            "source": "mangaepisodeguide",
+            "confidence": "high",
+            "notes": []
           }
         }
       }

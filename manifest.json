@@ -3,7 +3,7 @@
   "name": "MangaBridge",
   "version": "1.0.0",
   "description": "MangaBridge Extension",
-  "permissions": ["activeTab", "storage", "alarms"],
+  "permissions": ["activeTab", "storage", "alarms", "scripting", "tabs"],
   "action": {
     "default_popup": "index.html"
   },
@@ -16,7 +16,8 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content/detector.js"]
+      "js": ["content/detector.js"],
+      "run_at": "document_idle"
     }
   ]
 }
